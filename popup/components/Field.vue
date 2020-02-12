@@ -1,38 +1,41 @@
 <template>
-  <v-layout
+  <v-row
     v-if="useful"
-    justify-center
-    align-center
+    justify="center"
+    align="center"
   >
-    <v-flex class="text-truncate my-2 text-right">
+    <v-col class="text-truncate my-2 text-right">
       <v-tooltip bottom>
-        <span
-          slot="activator"
-          @click="toggleReveal"
-        >{{ displayValue }}</span>
-        <span>{{ tooltip }}</span>
+        <template v-slot:activator="{ on }">
+          <span
+            v-on="on"
+            @click="toggleReveal"
+          >{{ displayValue }}</span>
+          <span>{{ tooltip }}</span>
+        </template>
       </v-tooltip>
-    </v-flex>
+    </v-col>
 
-    <v-flex
-      class="my-0"
-      shrink
+    <v-col
+      class="my-0 shrink"
     >
       <v-tooltip left>
-        <v-btn
-          slot="activator"
-          small
-          icon
-          class="my-0"
-        >
-          <v-icon small>
-            mdi-content-copy
-          </v-icon>
-        </v-btn>
-        <span>{{ $i18n('copy_value_to_clipboard') }}</span>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            small
+            icon
+            class="my-0"
+            v-on="on"
+          >
+            <v-icon small>
+              mdi-content-copy
+            </v-icon>
+          </v-btn>
+          <span>{{ $i18n('copy_value_to_clipboard') }}</span>
+        </template>
       </v-tooltip>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">

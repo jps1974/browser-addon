@@ -2,8 +2,8 @@
   <v-card color="yellow lighten-3">
     <div style="float: right">
       <v-btn
-        flat
-        class="ml-3 mr-2 px-2"
+        text
+        class="ml-4 mr-2 px-2"
         @click="closeNotification(notification.id)"
       >
         {{ $i18n('close') }}
@@ -20,17 +20,15 @@
       </p>
     </v-card-text>
     <v-card-actions>
-      <v-layout
-        justify-center
-        align-end
+      <v-row
+        justify="center"
+        align="end"
         class="mb-1 mt-1"
       >
-        <v-flex>
-          <v-layout
-            wrap
-            justify-left
-            align-end
-            class="ml-2"
+        <v-col>
+          <v-row
+            align="end"
+            class="ml-2 justify-left"
           >
             <v-tooltip
               v-for="(but, index) of notification.buttons"
@@ -38,20 +36,22 @@
               top
               :disabled="!but.tooltip"
             >
-              <v-btn
-                :id="but.id"
-                slot="activator"
-                class="mr-3 my-2"
-                color="primary"
-                @click="dispatchActionResponse(notification.id, but.action, but.values)"
-              >
-                {{ but.label }}
-              </v-btn>
-              <span>{{ but.tooltip }}</span>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  :id="but.id"
+                  class="mr-4 my-2"
+                  color="primary"
+                  v-on="on"
+                  @click="dispatchActionResponse(notification.id, but.action, but.values)"
+                >
+                  {{ but.label }}
+                </v-btn>
+                <span>{{ but.tooltip }}</span>
+              </template>
             </v-tooltip>
-          </v-layout>
-        </v-flex>
-      </v-layout>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-card-actions>
   </v-card>
 </template>

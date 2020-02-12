@@ -1,7 +1,7 @@
 <template>
   <div
     id="searchPanel"
-    class="pb-4 pt-0 pr-0"
+    class="pb-6 pt-0 pr-0"
   >
     <v-divider v-show="filteredMatches && filteredMatches.length > 0" />
 

@@ -17,9 +17,9 @@
       @keyup.enter.self.stop.prevent="primaryClickAction"
       @keyup.enter.ctrl.self.stop.prevent="loadInNewTab"
     >
-      <v-layout
-        justify-center
-        align-start
+      <v-row
+        justify="center"
+        align="start"
         :style="`${hover ? 'cursor: pointer' : ''}`"
         @click.left.exact="primaryClickAction"
         @click.middle.exact="loadInNewTab"
@@ -27,30 +27,30 @@
         @click.middle.ctrl="primaryClickAction"
         @click.right.stop.prevent="showFullDetails"
       >
-        <v-flex class="text-truncate">
+        <v-col class="text-truncate">
           <v-hover>
             <v-card-title
-              :class="`pl-5 ml-2 py-0 mt-3 ${expanded ? 'mb-0' : 'mb-3'} subheading`"
+              :class="`pl-12 ml-2 py-0 mt-4 ${expanded ? 'mb-0' : 'mb-4'} subtitle-1`"
               :style="titleStyle"
             >
-              <v-layout column>
-                <v-flex class="text-truncate">
+              <v-row>
+                <v-col class="text-truncate">
                   {{ entry.title }}
-                </v-flex>
-                <v-flex
+                </v-col>
+                <v-col
                   :style="`${expanded ? 'visibility:hidden' : ''}`"
                   class="text-truncate caption pr-2 pt-1 py-1"
                 >
                   {{ usernameDisplayValue }}
-                </v-flex>
-              </v-layout>
+                </v-col>
+              </v-row>
             </v-card-title>
           </v-hover>
-        </v-flex>
-        <v-flex
+        </v-col>
+        <v-col
           v-if="hover || focussed"
-          shrink
-          class="my-0"
+
+          class="my-0 shrink"
         >
           <v-btn
             icon
@@ -58,8 +58,8 @@
           >
             <v-icon>{{ expanded ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
           </v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
       <v-card-text class="py-0 text-truncate">
         <v-slide-y-transition>
           <div v-if="expanded && !!entry.fullDetails">
@@ -70,48 +70,49 @@
               :field="f"
             />
             <!-- TODO new uuids for keys? -->
-            <v-layout
-              justify-space-between
-              align-center
+            <v-row
+              justify="space-between"
+              align="center"
             >
-              <v-flex class="text-truncate">
+              <v-col class="text-truncate">
                 <v-tooltip
                   top
                   :disabled="!entryPathIsLong"
                 >
-                  <v-layout
-                    slot="activator"
-                    justify-left
-                    align-center
-                  >
-                    <v-icon
-                      small
-                      class="py-1 pl-0 pr-2"
-                    >mdi-folder</v-icon>
-                    <span class="text-truncate caption py-1">{{ entryPath }}</span>
-                  </v-layout>
-                  <span>{{ fullEntryPath }}</span>
+                  <template v-slot:activator="{ on }">
+                    <v-row
+                      class="justify-left"
+                      align="center"
+                      v-on="on"
+                    >
+                      <v-icon
+                        small
+                        class="py-1 pl-0 pr-2"
+                      >mdi-folder</v-icon>
+                      <span class="text-truncate caption py-1">{{ entryPath }}</span>
+                    </v-row>
+                    <span>{{ fullEntryPath }}</span>
+                  </template>
                 </v-tooltip>
                 <v-tooltip top>
-                  <v-layout
-                    slot="activator"
-                    justify-left
-                    align-center
-                  >
-                    <v-icon
-                      small
-                      class="py-1 pl-0 pr-2"
-                    >mdi-cloud</v-icon>
-                    <span class="text-truncate caption py-1">{{ entryDomain }}</span>
-                  </v-layout>
-                  <span>{{ entry.url }}</span>
+                  <template v-slot:activator="{ on }">
+                    <v-row
+                      class="justify-left"
+                      align="center"
+                      v-on="on"
+                    >
+                      <v-icon
+                        small
+                        class="py-1 pl-0 pr-2"
+                      >mdi-cloud</v-icon>
+                      <span class="text-truncate caption py-1">{{ entryDomain }}</span>
+                    </v-row>
+                    <span>{{ entry.url }}</span>
+                  </template>
                 </v-tooltip>
-              </v-flex>
+              </v-col>
 
-              <v-flex
-                shrink
-                class="ma-2"
-              >
+              <v-col class="ma-2 shrink">
                 <v-btn
                   fab
                   small
@@ -120,8 +121,8 @@
                 >
                   <v-icon>mdi-edit</v-icon>
                 </v-btn>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </div>
         </v-slide-y-transition>
       </v-card-text>

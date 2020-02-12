@@ -9,7 +9,7 @@
       @click="generatePassword"
     >
       {{ $i18n('Menu_Button_copyNewPasswordToClipboard_label') }}
-      <v-icon class="pl-3">mdi-flash</v-icon>
+      <v-icon class="pl-4">mdi-flash</v-icon>
     </v-btn>
   </div>
 </template>

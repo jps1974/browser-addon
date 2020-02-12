@@ -43,8 +43,8 @@ module.exports = {
         }],
         "vue/attribute-hyphenation": "off",
         "vuetify/no-deprecated-classes": "error",
-        // "vuetify/grid-unknown-attributes": "error",
-        // "vuetify/no-legacy-grid": "error",
+        "vuetify/grid-unknown-attributes": "error",
+        "vuetify/no-legacy-grid": "error",
         "@typescript-eslint/consistent-type-assertions": "error",
         "@typescript-eslint/indent": "error",
         "@typescript-eslint/member-delimiter-style": [

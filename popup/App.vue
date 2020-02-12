@@ -4,36 +4,34 @@
     id="inspire"
     style="overflow-y: hidden"
   >
-    <v-toolbar
+    <v-app-bar
       v-show="showSearchPanel"
       app
-      fixed
       style="max-width: 400px;"
     >
       <SearchInput />
-    </v-toolbar>
+    </v-app-bar>
     <v-content style="overflow-y: hidden">
       <v-container
         class="fill-height"
         fluid
         style="padding: 0px; overflow-y: hidden"
       >
-        <v-layout
-          wrap
-          justify-center
-          align-top
+        <v-row
+          class="align-top"
+          justify="center"
           style="overflow-y: scroll;padding-right: 24px;padding-left: 32px;"
         >
-          <v-flex
-            xs12
-            class="pb-4"
+          <v-col
+            cols="12"
+            class="pb-6"
           >
             <v-alert
               v-show="showSaveRecovery"
               :value="true"
               color="warning"
               icon="mdi-warning"
-              outline
+              outlined
             >
               Continue saving or discard your changes?<br>
               <v-btn>Take action</v-btn>
@@ -42,7 +40,7 @@
             <div
               v-if="showNotifications"
               id="notifications"
-              class="pt-4"
+              class="pt-6"
             >
               <Notification
                 v-for="n of notifications"
@@ -56,8 +54,8 @@
               :frame-id="frameId"
             />
             <Save1stParty v-show="showSaveStart" />
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
 
@@ -77,40 +75,47 @@
       </v-btn>
     </v-fade-transition> <!-- </v-fab-transition> -->
 
-    <v-footer height="auto">
+    <v-footer
+      padless
+      height="auto"
+    >
       <v-tooltip top>
-        <v-btn
-          id="password-open-kee-vault"
-          slot="activator"
-          :aria-label="$i18n('Menu_Button_open_kee_vault_label')"
-          class="mx-2"
-          icon
-          @click="openKeeVault"
-        >
-          <img
-            width="24px"
-            height="24px"
-            src="../common/images/48-kee-vault.png"
+        <template v-slot:activator="{ on }">
+          <v-btn
+            id="password-open-kee-vault"
+            :aria-label="$i18n('Menu_Button_open_kee_vault_label')"
+            class="mx-2"
+            icon
+            v-on="on"
+            @click="openKeeVault"
           >
-        </v-btn>
+            <img
+              width="24px"
+              height="24px"
+              src="../common/images/48-kee-vault.png"
+            >
+          </v-btn>
+        </template>
         <span>{{ $i18n('Menu_Button_open_kee_vault_label') }}</span>
       </v-tooltip>
       <v-tooltip top>
-        <v-btn
-          v-show="showOpenKeePassButton"
-          id="password-open-keepass"
-          slot="activator"
-          :aria-label="$i18n('Menu_Button_open_keepass_label')"
-          class="mx-0"
-          icon
-          @click="openKeePass"
-        >
-          <img
-            width="24px"
-            height="24px"
-            src="../common/images/48-keepass.png"
+        <template v-slot:activator="{ on }">
+          <v-btn
+            v-show="showOpenKeePassButton"
+            id="password-open-keepass"
+            :aria-label="$i18n('Menu_Button_open_keepass_label')"
+            class="mx-0"
+            icon
+            v-on="on"
+            @click="openKeePass"
           >
-        </v-btn>
+            <img
+              width="24px"
+              height="24px"
+              src="../common/images/48-keepass.png"
+            >
+          </v-btn>
+        </template>
         <span>{{ $i18n('Menu_Button_open_keepass_label') }}</span>
       </v-tooltip>
       <v-divider
@@ -125,15 +130,16 @@
         mdi-lock
       </v-icon>
       <v-tooltip top>
-        <v-flex
-          slot="activator"
-          shrink
-          class="caption py-1"
-          style="word-break: break-word;overflow-wrap: break-word;"
-        >
-          {{ connectionStatus }}
-        </v-flex>
-        <span>{{ connectionStatusDetail }}</span>
+        <template v-slot:activator="{ on }">
+          <v-col
+            class="caption py-1 shrink"
+            style="word-break: break-word;overflow-wrap: break-word;"
+            v-on="on"
+          >
+            {{ connectionStatus }}
+          </v-col>
+          <span>{{ connectionStatusDetail }}</span>
+        </template>
       </v-tooltip>
 
       <v-spacer />
@@ -155,28 +161,28 @@
 
         <v-list>
           <!-- <v-list-tile @click="">
-                <v-list-tile-title class="mr-3 text-xs-right body-2">Force form field detection</v-list-tile-title>
+                <v-list-tile-title class="mr-4 text-xs-right body-2">Force form field detection</v-list-tile-title>
                 <v-icon size="20px">mdi-refresh</v-icon>
                 </v-list-tile> -->
-          <v-list-tile @click="showHelp">
-            <v-list-tile-title
+          <v-list-item @click="showHelp">
+            <v-list-item-title
               right
-              class="mr-3 text-right body-2"
+              class="mr-4 text-right body-2"
             >
               {{ $i18n('Help_Centre_Button_label') }}
-            </v-list-tile-title>
+            </v-list-item-title>
             <v-icon size="20px">
               mdi-help
             </v-icon>
-          </v-list-tile>
-          <v-list-tile @click="showOptions">
-            <v-list-tile-title class="mr-3 text-right body-2">
+          </v-list-item>
+          <v-list-item @click="showOptions">
+            <v-list-item-title class="mr-4 text-right body-2">
               {{ $i18n('Menu_Button_options_label') }}
-            </v-list-tile-title>
+            </v-list-item-title>
             <v-icon size="20px">
               mdi-settings
             </v-icon>
-          </v-list-tile>
+          </v-list-item>
         </v-list>
       </v-menu>
     </v-footer>
