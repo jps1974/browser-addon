@@ -76,7 +76,7 @@
     </v-fade-transition> <!-- </v-fab-transition> -->
 
     <v-footer
-      padless
+      app
       height="auto"
     >
       <v-tooltip top>
@@ -119,9 +119,8 @@
         <span>{{ $i18n('Menu_Button_open_keepass_label') }}</span>
       </v-tooltip>
       <v-divider
-        class="ml-1"
         vertical
-      />
+      ></v-divider>
       <v-icon
         size="20px"
         :color="statusIconColour"
@@ -131,18 +130,18 @@
       </v-icon>
       <v-tooltip top>
         <template v-slot:activator="{ on }">
-          <v-col
+          <div
             class="caption py-1 shrink"
             style="word-break: break-word;overflow-wrap: break-word;"
             v-on="on"
           >
             {{ connectionStatus }}
-          </v-col>
-          <span>{{ connectionStatusDetail }}</span>
+          </div>
         </template>
+        <span>{{ connectionStatusDetail }}</span>
       </v-tooltip>
 
-      <v-spacer />
+      <v-spacer></v-spacer>
 
       <v-menu
         top
