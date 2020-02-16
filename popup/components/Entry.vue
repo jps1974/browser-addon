@@ -17,49 +17,68 @@
       @keyup.enter.self.stop.prevent="primaryClickAction"
       @keyup.enter.ctrl.self.stop.prevent="loadInNewTab"
     >
-      <v-row
-        justify="center"
-        align="start"
-        :style="`${hover ? 'cursor: pointer' : ''}`"
-        @click.left.exact="primaryClickAction"
-        @click.middle.exact="loadInNewTab"
-        @click.left.ctrl="loadInNewTab"
-        @click.middle.ctrl="primaryClickAction"
-        @click.right.stop.prevent="showFullDetails"
-      >
-        <v-col class="text-truncate">
-          <v-hover>
-            <v-card-title
-              :class="`pl-12 ml-2 py-0 mt-4 ${expanded ? 'mb-0' : 'mb-4'} subtitle-1`"
-              :style="titleStyle"
-            >
-              <v-row>
-                <v-col class="text-truncate">
-                  {{ entry.title }}
-                </v-col>
-                <v-col
-                  :style="`${expanded ? 'visibility:hidden' : ''}`"
-                  class="text-truncate caption pr-2 pt-1 py-1"
-                >
-                  {{ usernameDisplayValue }}
-                </v-col>
-              </v-row>
-            </v-card-title>
-          </v-hover>
-        </v-col>
-        <v-col
-          v-if="hover || focussed"
-
-          class="my-0 shrink"
+      <v-container class="ma-0 pa-0 my-2">
+        <v-row
+          class="mr-3 ml-12"
+          :style="`${hover ? 'cursor: pointer' : ''}`"
+          @click.left.exact="primaryClickAction"
+          @click.middle.exact="loadInNewTab"
+          @click.left.ctrl="loadInNewTab"
+          @click.middle.ctrl="primaryClickAction"
+          @click.right.stop.prevent="showFullDetails"
         >
-          <v-btn
-            icon
-            @click.stop.prevent="toggleFullDetails"
+          <v-col class="text-truncate">
+            <v-hover>
+              <v-container
+                fluid
+                class="ma-0 pa-0"
+              >
+                <v-row no-gutters>
+                  <v-col class="text-truncate">
+                    {{ entry.title }}
+                  </v-col>
+                </v-row>
+                <v-row no-gutters>
+                  <v-col
+                    :style="`${expanded ? 'visibility:hidden' : ''}`"
+                    class="text-truncate caption"
+                  >
+                    {{ usernameDisplayValue }}
+                  </v-col>
+                </v-row>
+              </v-container>
+              <!-- <v-card-title
+                :class="`pl-12 ml-2 py-0 mt-4 ${expanded ? 'mb-0' : 'mb-4'} subtitle-1`"
+                :style="titleStyle"
+              >
+                <v-row>
+                  <v-col class="text-truncate">
+                    {{ entry.title }}
+                  </v-col>
+                  <v-col
+                    :style="`${expanded ? 'visibility:hidden' : ''}`"
+                    class="text-truncate caption pr-2 pt-1 py-1"
+                  >
+                    {{ usernameDisplayValue }}
+                  </v-col>
+                </v-row>
+              </v-card-title> -->
+            </v-hover>
+          </v-col>
+          <v-col
+            v-if="hover || focussed"
+            cols="2"
+            class="mr-3 align-self-center"
           >
-            <v-icon>{{ expanded ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
-          </v-btn>
-        </v-col>
-      </v-row>
+            <v-btn
+              icon
+              @click.stop.prevent="toggleFullDetails"
+            >
+              <v-icon>{{ expanded ? 'mdi-chevron-down' : 'mdi-chevron-up' }}</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
       <v-card-text class="py-0 text-truncate">
         <v-slide-y-transition>
           <div v-if="expanded && !!entry.fullDetails">
