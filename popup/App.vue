@@ -2,7 +2,6 @@
 <template>
   <v-app
     id="inspire"
-    style="overflow-y: hidden"
   >
     <v-app-bar
       v-show="showSearchPanel"
@@ -11,51 +10,38 @@
     >
       <SearchInput />
     </v-app-bar>
-    <v-content style="overflow-y: hidden">
+    <v-content>
       <v-container
-        class="fill-height"
         fluid
-        style="padding: 0px; overflow-y: hidden"
       >
-        <v-row
-          class="align-top"
-          justify="center"
-          style="overflow-y: scroll;padding-right: 24px;padding-left: 32px;"
+        <v-alert
+          v-show="showSaveRecovery"
+          :value="true"
+          color="warning"
+          icon="mdi-warning"
+          outlined
         >
-          <v-col
-            cols="12"
-            class="pb-6"
-          >
-            <v-alert
-              v-show="showSaveRecovery"
-              :value="true"
-              color="warning"
-              icon="mdi-warning"
-              outlined
-            >
-              Continue saving or discard your changes?<br>
-              <v-btn>Take action</v-btn>
-              <v-btn>Take action 2</v-btn>
-            </v-alert>
-            <div
-              v-if="showNotifications"
-              id="notifications"
-              class="pt-6"
-            >
-              <Notification
-                v-for="n of notifications"
-                :key="n.id"
-                :notification="n"
-              />
-            </div>
-            <SearchResults
-              v-show="showSearchPanel"
-              :matched-logins="matchedLogins"
-              :frame-id="frameId"
-            />
-            <Save1stParty v-show="showSaveStart" />
-          </v-col>
-        </v-row>
+          Continue saving or discard your changes?<br>
+          <v-btn>Take action</v-btn>
+          <v-btn>Take action 2</v-btn>
+        </v-alert>
+        <div
+          v-if="showNotifications"
+          id="notifications"
+          class="pt-6"
+        >
+          <Notification
+            v-for="n of notifications"
+            :key="n.id"
+            :notification="n"
+          />
+        </div>
+        <SearchResults
+          v-show="showSearchPanel"
+          :matched-logins="matchedLogins"
+          :frame-id="frameId"
+        />
+        <Save1stParty v-show="showSaveStart" />
       </v-container>
     </v-content>
 
@@ -132,7 +118,7 @@
         <template v-slot:activator="{ on }">
           <div
             class="caption py-1 shrink"
-            style="word-break: break-word;overflow-wrap: break-word;"
+            style="word-break: break-word;overflow-wrap: break-word;max-width: 250px;"
             v-on="on"
           >
             {{ connectionStatus }}
@@ -281,7 +267,7 @@ export default {
 </script>
 
 <style>
-
+/*
 html {
   overflow-y: hidden;
 }
@@ -302,6 +288,15 @@ body {
   flex: 0 1 auto;
   max-height: 100%;
   overflow-y: hidden;
+} */
+
+/* TODO: extra height when searchbox is not showing + more precise mesasurement once footer has finalised fixed height calc(100% - footer height) ???? */
+.v-content__wrap {
+  overflow-y: scroll;
+  max-height: 81vh;
+  min-height: 81vh;
+  height: 81vh;
 }
+
 
 </style>
