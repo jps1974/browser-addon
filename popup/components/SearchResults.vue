@@ -3,35 +3,39 @@
     id="searchPanel"
     class="pb-6 pt-0 pr-0"
   >
-    <v-divider v-show="filteredMatches && filteredMatches.length > 0" />
+    <v-row dense>
+      <v-col cols="12">
+        <v-divider v-show="filteredMatches && filteredMatches.length > 0" />
 
-    <Entry
-      v-for="(match, index) of filteredMatches"
-      :key="match.entry.uniqueID"
-      :entry="match.entry"
-      :index="index"
-      :frame-id="frame-id"
-      :login-index="match.originalIndex"
-    />
+        <Entry
+          v-for="(match, index) of filteredMatches"
+          :key="match.entry.uniqueID"
+          :entry="match.entry"
+          :index="index"
+          :frame-id="frame-id"
+          :login-index="match.originalIndex"
+        />
 
-    <v-divider
-      v-show="deduplicatedSearchResults && deduplicatedSearchResults.length > 0"
-      class="mt-2"
-    />
-    <v-subheader
-      v-show="deduplicatedSearchResults && deduplicatedSearchResults.length > 0"
-      class="text-center"
-      style="justify-content: center;"
-    >
-      {{ $i18n('matches_from_other_sites') }}
-    </v-subheader>
+        <v-divider
+          v-show="deduplicatedSearchResults && deduplicatedSearchResults.length > 0"
+          class="mt-2"
+        />
+        <v-subheader
+          v-show="deduplicatedSearchResults && deduplicatedSearchResults.length > 0"
+          class="text-center"
+          style="justify-content: center;"
+        >
+          {{ $i18n('matches_from_other_sites') }}
+        </v-subheader>
 
-    <Entry
-      v-for="(entry, index) of deduplicatedSearchResults"
-      :key="entry.uniqueID"
-      :entry="entry"
-      :index="index"
-    />
+        <Entry
+          v-for="(entry, index) of deduplicatedSearchResults"
+          :key="entry.uniqueID"
+          :entry="entry"
+          :index="index"
+        />
+      </v-col>
+    </v-row>
   </div>
 </template>
 

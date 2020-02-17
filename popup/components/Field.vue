@@ -11,8 +11,8 @@
             v-on="on"
             @click="toggleReveal"
           >{{ displayValue }}</span>
-          <span>{{ tooltip }}</span>
         </template>
+        <span>{{ tooltip }}</span>
       </v-tooltip>
     </v-col>
 
@@ -31,8 +31,8 @@
               mdi-content-copy
             </v-icon>
           </v-btn>
-          <span>{{ $i18n('copy_value_to_clipboard') }}</span>
         </template>
+        <span>{{ $i18n('copy_value_to_clipboard') }}</span>
       </v-tooltip>
     </v-col>
   </v-row>

@@ -81,7 +81,10 @@
       </v-container>
       <v-card-text class="py-0 text-truncate">
         <v-slide-y-transition>
-          <div v-if="expanded && !!entry.fullDetails">
+          <v-container
+            v-if="expanded && !!entry.fullDetails"
+            class="my-0 pa-0 mx-2"
+          >
             <!-- TODO: show a loading screen and also allow initial rendering to be expanded -->
             <Field
               v-for="f of allFields"
@@ -100,7 +103,7 @@
                 >
                   <template v-slot:activator="{ on }">
                     <v-row
-                      class="justify-left"
+                      class="justify-left text-truncate flex-nowrap"
                       align="center"
                       v-on="on"
                     >
@@ -110,13 +113,13 @@
                       >mdi-folder</v-icon>
                       <span class="text-truncate caption py-1">{{ entryPath }}</span>
                     </v-row>
-                    <span>{{ fullEntryPath }}</span>
                   </template>
+                  <span>{{ fullEntryPath }}</span>
                 </v-tooltip>
                 <v-tooltip top>
                   <template v-slot:activator="{ on }">
                     <v-row
-                      class="justify-left"
+                      class="justify-left text-truncate flex-nowrap"
                       align="center"
                       v-on="on"
                     >
@@ -126,8 +129,8 @@
                       >mdi-cloud</v-icon>
                       <span class="text-truncate caption py-1">{{ entryDomain }}</span>
                     </v-row>
-                    <span>{{ entry.url }}</span>
                   </template>
+                  <span>{{ entry.url }}</span>
                 </v-tooltip>
               </v-col>
 
@@ -138,11 +141,11 @@
                   left
                   @click="editEntry"
                 >
-                  <v-icon>mdi-edit</v-icon>
+                  <v-icon>mdi-pencil</v-icon>
                 </v-btn>
               </v-col>
             </v-row>
-          </div>
+          </v-container>
         </v-slide-y-transition>
       </v-card-text>
     </v-card>
