@@ -17,7 +17,10 @@
       @keyup.enter.self.stop.prevent="primaryClickAction"
       @keyup.enter.ctrl.self.stop.prevent="loadInNewTab"
     >
-      <v-container class="ma-0 pa-0 my-2">
+      <v-container
+        class="ma-0 pa-0 my-2"
+        :style="titleStyle"
+      >
         <v-row
           class="mr-3 ml-12"
           :style="`${hover ? 'cursor: pointer' : ''}`"
@@ -173,7 +176,7 @@ export default {
     computed: {
         titleStyle: function (this: any) {
             return (
-                "background-position:16px calc(50% - 1px); background-image:url(data:image/png;base64," +
+                "background-position:24px calc(50% - 10px); background-image:url(data:image/png;base64," +
         this.entry.iconImageData +
         ")"
             );
