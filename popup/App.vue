@@ -4,13 +4,13 @@
     id="inspire"
   >
     <v-app-bar
-      v-show="showSearchPanel"
+      v-model="showSearchPanel"
       app
       style="max-width: 400px;"
     >
       <SearchInput />
     </v-app-bar>
-    <v-content>
+    <v-content :class="`${showSearchPanel ? 'app_height_medium' : 'app_height_tall'}`">
       <v-container
         fluid
       >
@@ -290,12 +290,20 @@ body {
   overflow-y: hidden;
 } */
 
-/* TODO: extra height when searchbox is not showing + more precise mesasurement once footer has finalised fixed height calc(100% - footer height) ???? */
 .v-content__wrap {
   overflow-y: scroll;
-  max-height: 81vh;
-  min-height: 81vh;
-  height: 81vh;
+}
+
+.app_height_medium .v-content__wrap {
+  max-height: 466px;
+  min-height: 466px;
+  height: 466px;
+}
+
+.app_height_tall .v-content__wrap {
+  max-height: 522px;
+  min-height: 522px;
+  height: 522px;
 }
 
 
